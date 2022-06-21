@@ -8,6 +8,7 @@ const app = express();
 const port = 8080;
 const db = ['dan'];
 
+// using the imported middlewares
 app.use(express.json());
 app.use(morgan('tiny'));
 app.use(cors());
@@ -37,12 +38,9 @@ app.get('/getUser', (req, res) => {
 
 app.delete('/deleteUser/:name', (req, res) => {
   const { name } = req.params;
-  console.log(name);
   const index = db.indexOf(name);
-  console.log(req.params);
   if (index > -1) {
     db.splice(index, 1); // 2nd parameter means remove one item only
-    console.log('if test');
   }
   // console.log(db);
   res.send(db);
